@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
-import { View, Image, ImageBackground, Animated } from 'react-native';
-import { Container } from './styles';
-const image = { uri: 'https://reactjs.org/logo-og.png' };
+import React, { Component } from "react";
+import { View, Image, ImageBackground, Animated } from "react-native";
+import { Container } from "./styles";
 
 class Splash extends Component {
-  static navigationOptions = {
-    header: null
-  }
   state = {
     logoAnimation: new Animated.Value(0),
     loadingSpinner: false,
@@ -14,7 +10,7 @@ class Splash extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      const { logoAnimation, LogoText } = this.state;
+      const { logoAnimation } = this.state;
       Animated.parallel([
         Animated.spring(logoAnimation, {
           toValue: 1,
@@ -27,19 +23,20 @@ class Splash extends Component {
           loadingSpinner: true,
         });
       });
-    }, 300);
+    }, 500);
   }
   render() {
     return (
       <Container>
         <ImageBackground
           style={{
-            resizeMode: 'contain',
-            width: '100%',
-            height: '100%',
-            justifyContent: 'center',
+            resizeMode: "contain",
+            width: "100%",
+            height: "100%",
+            justifyContent: "center",
           }}
-          source={require('../../../assets/triviaFondoSPLASH.png')}>
+          source={require("../../../assets/triviaFondoSPLASH.png")}
+        >
           <Animated.View
             style={{
               opacity: this.state.logoAnimation,
@@ -47,14 +44,15 @@ class Splash extends Component {
                 inputRange: [0, 1],
                 outputRange: [80, 0],
               }),
-            }}>
+            }}
+          >
             <Image
               style={{
-                resizeMode: 'contain',
-                alignSelf: 'center',
-                width: '85%',
+                resizeMode: "contain",
+                alignSelf: "center",
+                width: "85%",
               }}
-              source={require('../../../assets/triviaSPLASH.png')}
+              source={require("../../../assets/triviaSPLASH.png")}
             />
           </Animated.View>
         </ImageBackground>

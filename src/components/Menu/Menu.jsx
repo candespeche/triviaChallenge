@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {View, ImageBackground} from 'react-native';
-import {Container, Title, Credits, Btn, ButtonText} from './styles';
+import React, { Component } from 'react';
+import { View, ImageBackground } from 'react-native';
+import { Container, Title, Credits, Btn, ButtonText } from './style';
 import NavbarContainer from '../Navbar/NavbarContainer';
 
-export default ({navigation}) => {
+export default ({ navigation }) => {
   return (
     <Container>
       <ImageBackground
@@ -14,12 +14,15 @@ export default ({navigation}) => {
           justifyContent: 'center',
         }}
         source={require('../../../assets/triviaFondo.png')}>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Btn onPress={() => navigation.navigate('Ejer2')}>
             <ButtonText>Jugar</ButtonText>
           </Btn>
           <Btn onPress={() => navigation.navigate('Ejer1')}>
             <ButtonText>Ver preguntas</ButtonText>
+          </Btn>
+          <Btn onPress={() => navigation.navigate('Points')}>
+            <ButtonText>Puntos</ButtonText>
           </Btn>
         </View>
         {/* <View style={{alignItems: 'center', justifyContent: 'flex-end'}}>
