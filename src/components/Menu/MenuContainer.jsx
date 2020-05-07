@@ -3,6 +3,7 @@ import { View } from "react-native";
 import Menu from "./Menu";
 import { connect } from "react-redux";
 import { fetchQuiz } from "../../../redux/actions/quiz";
+
 // import {Sound} from 'react-native-sound';
 
 const MenuContainer = ({ navigation, preguntasQuiz }) => {

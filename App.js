@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import Ejer1Container from "./src/components/Ejercicio1/Ejer1Container";
 import Ejer2Container from "./src/components/Ejercicio2/Ejer2Container";
 import Points from "./src/components/Points/Points";
+import SplashContainer from "./src/components/Splash/SplashContainer";
 import Navbar from "./src/components/Navbar/Navbar";
 import {
   createStackNavigator,
@@ -18,13 +19,21 @@ export default () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Menu">
+        <Stack.Navigator initialRouteName="Splash">
+          <Stack.Screen
+            name="Splash"
+            component={SplashContainer}
+            options={{
+              header: () => null,
+            }}
+            screenOptions={() => ({ gestureEnabled: false })}
+          />
           <Stack.Screen
             name="Menu"
             component={MenuContainer}
             screenOptions={() => ({ gestureEnabled: false })}
             options={{
-              header: () => <Navbar hide={true} cancel={false} />,
+              header: () => <Navbar />,
             }}
           />
           <Stack.Screen

@@ -33,6 +33,8 @@ export const Number = styled.Text`
   font-weight: 600;
   font-size: 150px;
   text-align: center;
+  margin-top: -20px;
+  margin-bottom: -7px;
 `;
 
 export const Pointstxt = styled.Text`
@@ -65,4 +67,18 @@ export const Circle2 = styled.View`
   shadow-offset: -15px 20px;
   shadow-opacity: 1;
   shadow-radius: 0px;
+`;
+
+export const Hr = styled.View`
+  width: 90px;
+  height: 1px;
+  background-color: #fff;
+  margin: 10px 0;
+`;
+
+export const Answers = styled.Text`
+  color: #fff;
+
+  font-size: 14px;
+  text-align: center;
 `;

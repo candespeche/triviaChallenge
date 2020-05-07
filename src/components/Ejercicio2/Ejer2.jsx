@@ -15,7 +15,8 @@ export default ({
   incorrect,
   navigation,
   capitalize,
-  ranNum,
+  Prueba,
+  Prueba2,
 }) => {
   const [pressStatus, setPressStatus] = useState(false);
   //let pressStatus = false;
@@ -32,7 +33,7 @@ export default ({
       incorrect(press);
       //pressStatus = false;
       setPressStatus(false);
-    }, 1500);
+    }, 500);
   };
 
   return (
