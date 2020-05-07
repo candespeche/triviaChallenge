@@ -6,12 +6,24 @@ import Ejer2 from "./Ejer2";
 const Ejer2Container = ({ quiz, actualizarPreguntas, navigation }) => {
   const [preguntas, setPreguntas] = useState([]);
   const [puntos, setPuntos] = useState(0);
+  const [correctas, setCorrectas] = useState(0);
+  const [incorrectas, setIncorrectas] = useState(0);
   const [pregunta, setPregunta] = useState([]);
+  const [endGame, setEndGame] = useState(false);
+  const [respuestas, setRespuestas] = useState([]);
 
   useEffect(() => {
+    if (preguntas.length === 0) {
+      console.log([correctas, incorrectas, "hdjhjds"]);
+      setEndGame(true);
+      setRespuestas([correctas, incorrectas]);
+      //console.log(incorrectas, correctas);
+    }
     if (quiz.quiz.length) {
       setPreguntas(quiz.quiz);
       setPregunta([quiz.quiz[Math.floor(Math.random() * preguntas.length)]]);
+
+      //console.log(preguntas.length, "LENGTH");
     } else console.log("Ya no hay mas");
   }, [preguntas]);
 
@@ -20,22 +32,54 @@ const Ejer2Container = ({ quiz, actualizarPreguntas, navigation }) => {
     if (index > -1) {
       setPreguntas(preguntas.splice(index, 1));
       if (preguntas.length == 0) {
-        navigation.navigate("Points", { points: puntos });
+        setTimeout(() => {
+          console.log([correctas, incorrectas], "iflength");
+          navigation.navigate("Points", {
+            points: puntos,
+            incorr: incorrectas,
+            corr: correctas,
+            endGame: endGame,
+            respuestas: respuestas,
+          });
+        }, 2000);
       }
       actualizarPreguntas(preguntas);
     } else {
-      //setPreguntas(quiz.quiz);
-      navigation.navigate("Points", { points: puntos });
+      navigation.navigate("Points", {
+        points: puntos,
+        incorr: incorrectas,
+        corr: correctas,
+        endGame: endGame,
+        respuestas: respuestas,
+      });
     }
   };
+  const Prueba = (value) => {
+    setCorrectas((value) => value + 1);
+  };
 
+  const Prueba2 = (value) => {
+    setIncorrectas((value) => value + 1);
+  };
   const correct = (pregun) => {
+    // setCorrectas(correctas === 0 ? correctas + 2 : correctas + 1);
+
+    //setCorrectas(prevState => prevState + 1);
+
+    const correct = correctas + 1;
+    setCorrectas(correct);
+    console.log(correctas);
+
     setPuntos(puntos + 10);
     clean(pregun);
   };
 
   const incorrect = (pregun) => {
-    setPuntos(puntos - 5);
+    // setIncorrectas(incorrectas === 0 ? incorrectas + 2 : incorrectas + 1);
+    const incorrect = incorrectas + 1;
+    setIncorrectas(incorrect);
+    console.log(incorrectas);
+    setPuntos(puntos - 3);
     clean(pregun);
   };
 
@@ -77,19 +121,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ejer2Container);
-
-// console.log(state.quiz.quiz, 'averrrrr');
-//useEffect -> cuando se monta lleno el estado local (setState) con las 10 preguntas y las guarda en
-//let diez = con las 10 preguntas
-//estado local con puntaje
-//funcionPregunta = saca una pregunta de let diez y la setea en setPregunta.  filter saca la pregunta q se usó. y hace Math random de las 10 preguntas
-//en la respuesta correctas se suman puntos al estado local y ejecuta nuevamente
-//(return if existe pregunta.length, la renderiza y que let preguntas sin la que se renderizó. Sino va a puntaje)
-
-// const [pregunta , setPregunta] = useState([])
-// const [puntos , setPuntos]= useState(0)
-// let questions = []
-// useEffect {
-//traeme las 10 preguntas al estado global (o buscarlas en prop.state.preguntas)y guardarlas en let questions;
-//  functionPreguna(); mathRandom de las preguntas q esten en let question , filter de questions[el numero random] y por ultimo devuelve la pregunta filtrada y se setea en setPregunta
-//}
