@@ -24,6 +24,7 @@ const Ejer2Container = ({ quiz, actualizarPreguntas, navigation }) => {
       }
       actualizarPreguntas(preguntas);
     } else {
+      //setPreguntas(quiz.quiz);
       navigation.navigate("Points", { points: puntos });
     }
   };
@@ -36,7 +37,6 @@ const Ejer2Container = ({ quiz, actualizarPreguntas, navigation }) => {
   const incorrect = (pregun) => {
     setPuntos(puntos - 5);
     clean(pregun);
-    console.log(preguntas, "INCORRECT");
   };
 
   const capitalize = (text) => {
@@ -51,10 +51,6 @@ const Ejer2Container = ({ quiz, actualizarPreguntas, navigation }) => {
     }
     return arr;
   };
-
-  // const ranNum = (arr) => {
-  //   return pregunta.answers;
-  // };
 
   return (
     <Ejer2

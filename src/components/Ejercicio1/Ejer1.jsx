@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React from "react";
+import { View, Text, ActivityIndicator } from "react-native";
 import {
   Container,
   Circle,
@@ -9,10 +9,10 @@ import {
   QandA,
   Question,
   Answer,
-} from './style';
-import {ScrollView} from 'react-native-gesture-handler';
+} from "./style";
+import { ScrollView } from "react-native-gesture-handler";
 
-export default ({state, quiz, navigation, capitalize, correct}) => {
+export default ({ state, quiz, navigation, capitalize, correct }) => {
   return (
     <ScrollView>
       <Container>
@@ -29,7 +29,7 @@ export default ({state, quiz, navigation, capitalize, correct}) => {
                     Respuesta: {capitalize(correct(question.answers))}
                   </Answer>
                   {index === 9 ? (
-                    <View style={{marginBottom: 35}}></View>
+                    <View style={{ marginBottom: 35 }}></View>
                   ) : (
                     <Hr></Hr>
                   )}
@@ -38,7 +38,7 @@ export default ({state, quiz, navigation, capitalize, correct}) => {
             );
           })
         ) : (
-          <Text>Cargando</Text>
+          <ActivityIndicator color={"#cecece"} size={"large"} />
         )}
       </Container>
     </ScrollView>

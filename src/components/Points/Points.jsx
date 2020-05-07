@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { View, Text, ImageBackground, Image } from "react-native";
-import { Container, Title, Number, Btn, ButtonText } from "./style";
-export default ({ points }) => {
-  console.log(points, "puntos");
+import {
+  Container,
+  Pointstxt,
+  Number,
+  Btn,
+  ButtonText,
+  Circle,
+  Circle2,
+} from "./style";
+export default ({ route, navigation }) => {
+  const points = route.params.points;
   return (
     <Container>
       <ImageBackground
@@ -11,42 +19,28 @@ export default ({ points }) => {
           width: "100%",
           height: "100%",
           justifyContent: "center",
+          alignItems: "center",
         }}
         source={require("../../../assets/triviaFondo.png")}
       >
         <View
           style={{
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            position: "absolute",
+            bottom: 230,
           }}
         >
-          <View
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text>{points}</Text>
-          </View>
-          {/* <Image
-            style={{
-              resizeMode: "contain",
-              width: "90%",
-              opacity: 20,
-              marginLeft: 10,
-            }}
-            source={require("../../../assets/points-06.png")}
-          /> */}
+          <Circle2>
+            <Circle>
+              <Number style={{ fontSize: 90 }}>
+                {points < 0 ? "000" : points}
+              </Number>
+              <Pointstxt>PUNTOS</Pointstxt>
+            </Circle>
+          </Circle2>
         </View>
-        <View style={{ alignItems: "center" }}>
+        <View style={{ position: "absolute", bottom: 70 }}>
           <Btn onPress={() => navigation.navigate("Menu")}>
-            <ButtonText>Menu</ButtonText>
+            <ButtonText>Menú principal</ButtonText>
           </Btn>
         </View>
       </ImageBackground>

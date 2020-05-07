@@ -28,7 +28,9 @@ export const ButtonText = styled.Text`
 `;
 
 export const Credits = styled.Text`
-  color: #000;
-  font-size: 14px;
+  color: #536c77;
+  padding: 1.5px 0;
+  font-size: 13px;
   text-align: center;
+  letter-spacing: 0.3px;
 `;
