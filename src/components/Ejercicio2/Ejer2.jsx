@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ImageBackground, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  ImageBackground,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import { Container, Card, Question, Button, ButtonTxt, Column } from "./style";
 
 export default ({
@@ -12,26 +18,21 @@ export default ({
   ranNum,
 }) => {
   const [pressStatus, setPressStatus] = useState(false);
-  const [shuffled, setShuffled] = useState([]);
+  //let pressStatus = false;
 
-  console.log(pregunta);
-
-  // function shuffle(array) {
-  //   return array.sort(() => Math.random() - 0.5));
-  // }
-  // const shuffled = shuffle(pregunta[0].answers);
-  // console.log(shuffled);
   const correcta = (press) => {
     setTimeout(() => {
       correct(press);
+      //pressStatus = false;
       setPressStatus(false);
-    }, 2000);
+    }, 1500);
   };
   const incorrecta = (press) => {
     setTimeout(() => {
       incorrect(press);
+      //pressStatus = false;
       setPressStatus(false);
-    }, 2000);
+    }, 1500);
   };
 
   return (
@@ -58,6 +59,7 @@ export default ({
                     return (
                       <View key={index}>
                         <Button
+                          disabled={pressStatus}
                           style={
                             pressStatus
                               ? respuesta.isCorrect
@@ -90,13 +92,14 @@ export default ({
               </View>
             </View>
           ) : (
-            <Text>Cargando</Text>
+            <ActivityIndicator color={"#cecece"} size={"large"} />
           )}
         </Card>
       </ImageBackground>
     </Container>
   );
 };
+
 const styles = StyleSheet.create({
   correctBtn: {
     backgroundColor: "#55962D",

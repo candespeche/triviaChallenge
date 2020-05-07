@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import configureStore from './redux/index';
-import { NavigationContainer } from '@react-navigation/native';
-import Menu from './src/components/Menu/MenuContainer';
-import { Provider } from 'react-redux';
-import Ejer1Container from './src/components/Ejercicio1/Ejer1Container';
-import Ejer2Container from './src/components/Ejercicio2/Ejer2Container';
-import Points from './src/components/Points/Points';
-import NavbarContainer from './src/components/Navbar/NavbarContainer';
+import React from "react";
+import configureStore from "./redux/index";
+import { NavigationContainer } from "@react-navigation/native";
+import { Provider } from "react-redux";
+import Ejer1Container from "./src/components/Ejercicio1/Ejer1Container";
+import Ejer2Container from "./src/components/Ejercicio2/Ejer2Container";
+import Points from "./src/components/Points/Points";
+import Navbar from "./src/components/Navbar/Navbar";
 import {
   createStackNavigator,
   CardStyleInterpolators,
-} from '@react-navigation/stack';
+} from "@react-navigation/stack";
+import MenuContainer from "./src/components/Menu/MenuContainer";
 const store = configureStore();
 const Stack = createStackNavigator();
 
@@ -22,22 +21,24 @@ export default () => {
         <Stack.Navigator initialRouteName="Menu">
           <Stack.Screen
             name="Menu"
-            component={Menu}
+            component={MenuContainer}
             screenOptions={() => ({ gestureEnabled: false })}
-            options={{ header: () => <NavbarContainer hide={true} cancel={false} /> }}
+            options={{
+              header: () => <Navbar hide={true} cancel={false} />,
+            }}
           />
           <Stack.Screen
             name="Ejer1"
             component={Ejer1Container}
             options={{
-              header: () => <NavbarContainer cancel={true} />,
+              header: () => <Navbar />,
             }}
           />
           <Stack.Screen
             name="Ejer2"
             component={Ejer2Container}
             options={{
-              header: () => <NavbarContainer cancel={true} />,
+              header: () => <Navbar />,
             }}
           />
           <Stack.Screen
@@ -45,7 +46,7 @@ export default () => {
             component={Points}
             options={{
               cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-              header: () => <NavbarContainer cancel={true} />,
+              header: () => <Navbar />,
             }}
           />
         </Stack.Navigator>
