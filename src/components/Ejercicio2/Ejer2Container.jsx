@@ -1,51 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { fetchQuiz, newQuestions } from '../../../redux/actions/quiz';
-import { connect } from 'react-redux';
-import Ejer2 from './Ejer2';
+import React, { useEffect, useState } from "react";
+import { fetchQuiz, newQuestions } from "../../../redux/actions/quiz";
+import { connect } from "react-redux";
+import Ejer2 from "./Ejer2";
 
-const Ejer2Container = ({ quiz, state, preguntasQuiz, actualizarPreguntas, navigation }) => {
+const Ejer2Container = ({ quiz, actualizarPreguntas, navigation }) => {
   const [preguntas, setPreguntas] = useState([]);
-  const [puntos, setPuntos] = useState(0)
+  const [puntos, setPuntos] = useState(0);
   const [pregunta, setPregunta] = useState([]);
 
   useEffect(() => {
     if (quiz.quiz.length) {
-      setPreguntas(quiz.quiz)
-      setPregunta([quiz.quiz[(Math.floor(Math.random() * (preguntas.length)))]])
-    } else console.log("Ya no hay mas")
-  }, [preguntas])
-
+      setPreguntas(quiz.quiz);
+      setPregunta([quiz.quiz[Math.floor(Math.random() * preguntas.length)]]);
+    } else console.log("Ya no hay mas");
+  }, [preguntas]);
 
   const clean = (answer) => {
     const index = preguntas.indexOf(answer[0]);
     if (index > -1) {
-      setPreguntas(preguntas.splice(index, 1))
-      if (preguntas.length == 0) { return navigation.navigate("Menu") }
-      actualizarPreguntas(preguntas)
-      // setPregunta(preguntas[(Math.floor(Math.random() * (preguntas.length)))])
+      setPreguntas(preguntas.splice(index, 1));
+      if (preguntas.length == 0) {
+        navigation.navigate("Points", { points: puntos });
+      }
+      actualizarPreguntas(preguntas);
     } else {
-      return navigation.navigate("Points")
+      navigation.navigate("Points", { points: puntos });
     }
-  }
+  };
 
   const correct = (pregun) => {
-    setPuntos(puntos + 10)
-    console.log(puntos, "CORRECT")
-    clean(pregun)
+    setPuntos(puntos + 10);
+    clean(pregun);
   };
 
   const incorrect = (pregun) => {
-    setPuntos(puntos - 5)
-    clean(pregun)
-    console.log(preguntas, "INCORRECT")
-
+    setPuntos(puntos - 5);
+    clean(pregun);
+    console.log(preguntas, "INCORRECT");
   };
 
   const capitalize = (text) => {
     let arr = [];
 
     for (let i = 0; i < text.length; i++) {
-      if (text[i - 1] === '¿' || i === 0) {
+      if (text[i - 1] === "¿" || i === 0) {
         arr.push(text[i]);
       } else {
         arr.push(text[i].toLowerCase());
@@ -53,9 +51,10 @@ const Ejer2Container = ({ quiz, state, preguntasQuiz, actualizarPreguntas, navig
     }
     return arr;
   };
-  const ranNum = (arr) => {
-    return pregunta.answers
-  }
+
+  // const ranNum = (arr) => {
+  //   return pregunta.answers;
+  // };
 
   return (
     <Ejer2
@@ -68,17 +67,16 @@ const Ejer2Container = ({ quiz, state, preguntasQuiz, actualizarPreguntas, navig
   );
 };
 
-
 const mapStateToProps = (state) => {
   return {
     state,
     quiz: state.quiz,
-  }
-}
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     preguntasQuiz: () => dispatch(fetchQuiz()),
-    actualizarPreguntas: (questions) => dispatch(newQuestions(questions))
+    actualizarPreguntas: (questions) => dispatch(newQuestions(questions)),
   };
 };
 

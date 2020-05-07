@@ -1,12 +1,12 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   width: 100%;
   height: 100%;
-  background-color: #3a547c;
+  background-color: #abddf2;
 `;
 
-export const Btn = styled.TouchableHighlight`
+export const Btn = styled.TouchableOpacity`
   height: 45px;
   padding-top: 2.3%;
   margin: 20px 0;
