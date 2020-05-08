@@ -1,5 +1,7 @@
 import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator } from "react-native";
+import { capitalize, correct } from "../../utils.js";
+import { ScrollView } from "react-native-gesture-handler";
 import {
   Container,
   Circle,
@@ -10,9 +12,8 @@ import {
   Question,
   Answer,
 } from "./style";
-import { ScrollView } from "react-native-gesture-handler";
 
-export default ({ state, quiz, navigation, capitalize, correct }) => {
+export default ({ quiz }) => {
   return (
     <ScrollView>
       <Container>

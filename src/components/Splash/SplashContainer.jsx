@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import React, { useEffect } from "react";
 import Splash from "./Splash.jsx";
 import { connect } from "react-redux";
-
-// import {Sound} from 'react-native-sound';
 
 const SplashContainer = ({ navigation }) => {
   useEffect(() => {

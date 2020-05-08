@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
@@ -19,6 +19,7 @@ export const Card = styled.View`
 
 export const Question = styled.Text`
   color: #0d0a21;
+  font-family: "Montserrat-medium"
   font-size: 18px;
   height: 120px;
   font-weight: bold;
@@ -42,6 +43,7 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonTxt = styled.Text`
   color: #0d0a21;
-  font-size: 15px;
+  font-family: "Montserrat-regular"
+  font-size: 14px;
   text-align: center;
 `;

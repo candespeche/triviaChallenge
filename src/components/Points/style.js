@@ -24,6 +24,7 @@ export const ButtonText = styled.Text`
   color: #000;
   font-weight: 600;
   font-size: 18px;
+  font-family: "Montserrat-medium"
   text-align: center;
   justify-content: center;
 `;
@@ -32,6 +33,7 @@ export const Number = styled.Text`
   color: #fff;
   font-weight: 600;
   font-size: 150px;
+  font-family: "Montserrat-bold"
   text-align: center;
   margin-top: -20px;
   margin-bottom: -7px;
@@ -41,6 +43,7 @@ export const Pointstxt = styled.Text`
   color: #fff;
   font-weight: 600;
   font-size: 30px;
+  font-family: "Montserrat-medium"
   text-align: center;
 `;
 
@@ -78,7 +81,7 @@ export const Hr = styled.View`
 
 export const Answers = styled.Text`
   color: #fff;
-
+  font-family: "Montserrat-regular"
   font-size: 14px;
   text-align: center;
 `;

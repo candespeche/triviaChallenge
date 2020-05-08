@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
@@ -21,6 +21,7 @@ export const Circle = styled.View`
 `;
 
 export const Number = styled.Text`
+  font-family: "Montserrat-medium"
   color: #0d0a21;
   font-size: 14px;
 `;
@@ -29,6 +30,7 @@ export const QandA = styled.View``;
 
 export const Question = styled.Text`
   color: #0d0a21;
+  font-family: "Montserrat-bold"
   font-size: 18px;
   margin-right: 43px;
   font-weight: bold;
@@ -36,6 +38,7 @@ export const Question = styled.Text`
 
 export const Answer = styled.Text`
   color: #0d0a21;
+  font-family: "Montserrat-regular"
   font-size: 16px;
   margin-top: 8px;
 `;
