@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { View, ImageBackground, Text } from "react-native";
-import { Container, Title, Credits, Btn, ButtonText } from "./style";
+import React from "react";
+import { View, ImageBackground } from "react-native";
+import { Container, Btn, ButtonText } from "./style";
 
 export default ({ navigation }) => {
   return (
@@ -22,20 +22,6 @@ export default ({ navigation }) => {
             <ButtonText>Ver preguntas</ButtonText>
           </Btn>
         </View>
-        {/* <View
-          style={{
-            alignSelf: "center",
-            position: "absolute",
-            bottom: 50,
-          }}
-        >
-          <Credits>diseño y programación</Credits>
-          <Credits style={{ marginBottom: 5, fontWeight: "bold" }}>
-            CANDELARIA ESPECHE
-          </Credits>
-          <Credits>música</Credits>
-          <Credits style={{ fontWeight: "bold" }}>FRANCISCO ESPECHE</Credits>
-        </View> */}
       </ImageBackground>
     </Container>
   );

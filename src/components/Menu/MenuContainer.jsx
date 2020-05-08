@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import Menu from "./Menu";
 import { connect } from "react-redux";
 import { fetchQuiz } from "../../../redux/actions/quiz";
 
-// import {Sound} from 'react-native-sound';
-
 const MenuContainer = ({ navigation, preguntasQuiz }) => {
   useEffect(() => {
     preguntasQuiz();
-  }, []);
+  }, [preguntasQuiz]);
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

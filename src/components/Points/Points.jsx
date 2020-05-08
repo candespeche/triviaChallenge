@@ -1,5 +1,5 @@
-import React, { Component, useEffect } from "react";
-import { View, Text, ImageBackground, Image } from "react-native";
+import React from "react";
+import { View, ImageBackground } from "react-native";
 import {
   Container,
   Pointstxt,
@@ -11,19 +11,17 @@ import {
   Circle,
   Circle2,
 } from "./style";
-export default ({ route, navigation }) => {
+import { connect } from "react-redux";
+import { fetchQuiz } from "../../../redux/actions/quiz";
+
+const Points = ({ route, navigation, preguntasQuiz }) => {
   const points = route.params.points;
   const correctas = route.params.corr;
   const incorrectas = route.params.incorr;
-  const endGame = route.params.endGame;
-  const respuestas = route.params.respuestas;
-
-  useEffect(() => {
-    console.log(endGame, "ENDGAME");
-    console.log(respuestas, "points respuestas");
-    //console.log("correctas: ", correctas, "incorrectas: ", incorrectas);
-  }, []);
-
+  handlePress = () => {
+    preguntasQuiz();
+    navigation.navigate("Menu");
+  };
   return (
     <Container>
       <ImageBackground
@@ -55,7 +53,7 @@ export default ({ route, navigation }) => {
           </Circle2>
         </View>
         <View style={{ position: "absolute", bottom: 70 }}>
-          <Btn onPress={() => navigation.navigate("Menu")}>
+          <Btn onPress={() => handlePress()}>
             <ButtonText>Menú principal</ButtonText>
           </Btn>
         </View>
@@ -63,3 +61,11 @@ export default ({ route, navigation }) => {
     </Container>
   );
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    preguntasQuiz: () => dispatch(fetchQuiz()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Points);

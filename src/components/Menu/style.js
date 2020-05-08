@@ -23,6 +23,7 @@ export const Btn = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   color: #000;
   font-weight: 600;
+  font-family: "Montserrat-medium"
   font-size: 18px;
   text-align: center;
 `;
@@ -31,6 +32,7 @@ export const Credits = styled.Text`
   color: #536c77;
   padding: 1.5px 0;
   font-size: 13px;
+  font-family: "Montserrat-regular"
   text-align: center;
   letter-spacing: 0.3px;
 `;

@@ -1,39 +1,23 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  ImageBackground,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
-import { Container, Card, Question, Button, ButtonTxt, Column } from "./style";
+import React from "react";
+import { View, ImageBackground, Alert, ActivityIndicator } from "react-native";
+import { Container, Card, Question, Button, ButtonTxt } from "./style";
+import { capitalize } from "../../utils.js";
 
 export default ({
   pregunta,
-  preguntas,
-  correct,
-  incorrect,
-  navigation,
-  capitalize,
-  Prueba,
-  Prueba2,
+  handleCorrect,
+  handleIncorrect,
+  handlePuntos,
+  clean,
 }) => {
-  const [pressStatus, setPressStatus] = useState(false);
-  //let pressStatus = false;
-
-  const correcta = (press) => {
-    setTimeout(() => {
-      correct(press);
-      //pressStatus = false;
-      setPressStatus(false);
-    }, 1500);
-  };
-  const incorrecta = (press) => {
-    setTimeout(() => {
-      incorrect(press);
-      //pressStatus = false;
-      setPressStatus(false);
-    }, 500);
+  const handlePress = (respuesta) => {
+    if (respuesta.isCorrect) {
+      handleCorrect();
+      handlePuntos();
+    } else {
+      handleIncorrect();
+    }
+    clean(pregunta);
   };
 
   return (
@@ -60,32 +44,25 @@ export default ({
                     return (
                       <View key={index}>
                         <Button
-                          disabled={pressStatus}
-                          style={
-                            pressStatus
-                              ? respuesta.isCorrect
-                                ? styles.correctBtn
-                                : styles.incorrectBtn
-                              : null
-                          }
                           onPress={() => {
-                            setPressStatus(true);
                             respuesta.isCorrect
-                              ? correcta(pregunta)
-                              : incorrecta(pregunta);
+                              ? Alert.alert("¡Correcto!", "Sumaste 10 puntos", [
+                                  {
+                                    text: "Siguiente",
+                                    onPress: () => {
+                                      handlePress(respuesta);
+                                    },
+                                  },
+                                ])
+                              : Alert.alert("¡Oops!", `Respuesta incorrecta`, [
+                                  {
+                                    text: "Siguiente",
+                                    onPress: () => handlePress(respuesta),
+                                  },
+                                ]);
                           }}
                         >
-                          <ButtonTxt
-                            style={
-                              pressStatus
-                                ? respuesta.isCorrect
-                                  ? styles.correctTxt
-                                  : styles.incorrectTxt
-                                : null
-                            }
-                          >
-                            {capitalize(respuesta.answer)}
-                          </ButtonTxt>
+                          <ButtonTxt>{capitalize(respuesta.answer)}</ButtonTxt>
                         </Button>
                       </View>
                     );
@@ -100,18 +77,3 @@ export default ({
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  correctBtn: {
-    backgroundColor: "#55962D",
-  },
-  incorrectBtn: {
-    backgroundColor: "#EA3D3D",
-  },
-  correctTxt: {
-    color: "#fff",
-  },
-  incorrectTxt: {
-    color: "#fff",
-  },
-});
